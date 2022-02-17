@@ -59,12 +59,6 @@ variable "aws_az" {
   description = "AWS Availability Zone in which the site will be created"
 }
 
-variable "aws_vpc_cidr" {
-  type        = string
-  description = "AWS VPC CIDR, that will be used to create the vpc while creating the site"
-  default     = "192.168.0.0/22"
-}
-
 variable "site_disk_size" {
   type        = number
   description = "Disk size in GiB"
@@ -77,9 +71,20 @@ variable "aws_instance_type" {
   default     = "t3.2xlarge"
 }
 
+variable "aws_vpc_cidr" {
+  type        = string
+  description = "AWS VPC CIDR, that will be used to create the vpc while creating the site"
+  default     = "192.168.0.0/22"
+}
+
 variable "aws_subnet_ce_cidr" {
   type        = map(string)
   description = "Map to hold different CE cidr with key as name of subnet"
+  default = {
+    "outside"  = "192.168.0.0/25"
+    "inside"   = "192.168.0.192/26"
+    "workload" = "192.168.0.128/26"
+  }
 }
 
 variable "client_ami_id" {
@@ -97,16 +102,23 @@ variable "client_disk_size" {
 variable "azure_vnet_cidr" {
   type        = string
   description = "Azure Vnet CIDR, that will be used to create the vpc while creating the site"
+  default     = "10.0.0.0/22"
 }
 
 variable "azure_client_vnet_cidr" {
   type        = string
   description = "Azure Client Vnet CIDR, that will be used to create the vpc while creating the site"
+  default     = "10.0.0.0/22"
 }
 
 variable "azure_subnet_ce_cidr" {
   type        = map(string)
   description = "Map to hold different CE cidr with key as name of subnet"
+  default = {
+    "outside"  = "10.0.0.0/25"
+    "inside"   = "10.0.0.192/26"
+    "workload" = "10.0.0.128/26"
+  }
 }
 
 variable "azure_resource_group" {
