@@ -98,8 +98,4 @@ module "mnc" {
   azure_az              = var.azure_az
   azure_resource_group  = var.azure_resource_group
 }
-
-output "app_url" {
-  value = module.mnc.app_url
-}
 ```
