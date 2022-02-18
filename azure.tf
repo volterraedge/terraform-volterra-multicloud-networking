@@ -71,7 +71,7 @@ resource "azurerm_route_table" "peer_vnet_route_table" {
 resource "azurerm_route" "peer_vnet_route" {
   name                = "peer-vnet-route"
   resource_group_name = azurerm_resource_group.peer_vnet.name
-  route_table_name    = azurerm_route_table.peer_vnet.name
+  route_table_name    = azurerm_route_table.peer_vnet_route_table.name
   address_prefix      = "0.0.0.0/0"
   next_hop_type       = "VirtualAppliance"
   next_hop_in_ip_address = data.azurerm_network_interface.sli.private_ip_address
