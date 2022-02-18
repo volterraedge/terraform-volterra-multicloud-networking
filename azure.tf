@@ -31,6 +31,7 @@ resource "azurerm_network_security_group" "allow_ce" {
 }
 
 module "vnet" {
+  depends_on          = [azurerm_resource_group.peer_vnet]
   source              = "Azure/vnet/azurerm"
   resource_group_name = azurerm_resource_group.peer_vnet.name
   address_space       = [var.azure_client_vnet_cidr]
