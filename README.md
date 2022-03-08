@@ -1,5 +1,53 @@
 # terraform-volterra-multicloud-networking
 
+[![Lint Status](https://github.com/volterraedge/terraform-volterra-multicloud-networking/workflows/Lint/badge.svg)](https://github.com/volterraedge/terraform-volterra-multicloud-networking/actions)
+[![LICENSE](https://img.shields.io/github/license/volterraedge/terraform-volterra-multicloud-networking)](https://github.com/volterraedge/terraform-volterra-multicloud-networking/blob/main/LICENSE)
+
+This is a terraform module to create Volterra's Multi-Cloud Networking usecase. Read the [Multi-Cloud Networking usecase guide](https://docs.cloud.f5.com/docs/quick-start/multi-cloud-networking) to learn more.
+
+---
+
+## Overview
+
+![Image of MCN Usecase](https://docs.cloud.f5.com/docs/static/c0e68c082aaa4c3eab45c0b0d667061f/63123/top-cns.webp)
+
+---
+
+## Prerequisites
+
+### Volterra Account
+
+* Signup For Volterra Account
+
+  If you don't have a Volterra account. Please follow this link to [signup](https://console.ves.volterra.io/signup/)
+
+* Download Volterra API credentials file
+
+  Follow [how to generate API Certificate](https://volterra.io/docs/how-to/user-mgmt/credentials) to create API credentials
+
+* Setup domain delegation
+
+  Follow steps from this [link](https://volterra.io/docs/how-to/app-networking/domain-delegation) to create domain delegation
+
+### Command Line Tools
+
+* Install terraform
+
+  For homebrew installed on macos, run below command to install terraform. For rest of the os follow the instructions from [this link](https://learn.hashicorp.com/tutorials/terraform/install-cli) to install terraform
+
+  ```bash
+  $ brew tap hashicorp/tap
+  $ brew install hashicorp/tap/terraform
+
+  # to update
+  $ brew upgrade hashicorp/tap/terraform
+  ```
+
+* Export the API certificate password as environment variable
+
+  ```bash
+  export VES_P12_PASSWORD=<your credential password>
+  ```
 
 ---
 
