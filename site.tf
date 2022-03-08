@@ -146,11 +146,6 @@ resource "volterra_azure_vnet_site" "this" {
         }
       }
     }
-    inside_static_routes {
-      static_route_list {
-        simple_static_route = var.azure_client_vnet_cidr
-      }
-    }
     global_network_list {
       global_network_connections {
         sli_to_global_dr {
@@ -163,7 +158,7 @@ resource "volterra_azure_vnet_site" "this" {
     }
     no_global_network        = false
     no_outside_static_routes = true
-    no_inside_static_routes  = false
+    no_inside_static_routes  = true
     no_network_policy        = true
     no_forward_proxy         = false
     forward_proxy_allow_all  = true
