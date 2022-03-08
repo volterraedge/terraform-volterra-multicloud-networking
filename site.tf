@@ -166,10 +166,10 @@ resource "volterra_azure_vnet_site" "this" {
     no_global_network        = false
     no_outside_static_routes = true
     # may want to make that false again
-    no_inside_static_routes  = true
-    no_network_policy        = true
-    no_forward_proxy         = false
-    forward_proxy_allow_all  = true
+    no_inside_static_routes = true
+    no_network_policy       = true
+    no_forward_proxy        = false
+    forward_proxy_allow_all = true
   }
   logs_streaming_disabled = true
   ssh_key                 = var.ssh_public_key
