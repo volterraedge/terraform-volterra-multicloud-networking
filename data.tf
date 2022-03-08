@@ -10,7 +10,7 @@ data "aws_route_tables" "main" {
 data "aws_instance" "ce" {
   depends_on = [volterra_tf_params_action.apply_aws_vpc]
   filter {
-    name   = "tag:ves.io/site_name"
+    name   = "tag:ves-io-site-name"
     values = [local.aws_name]
   }
 }
