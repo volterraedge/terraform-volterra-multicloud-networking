@@ -81,26 +81,11 @@ variable "aws_az" {
   default = "us-east-2a"
 }
 
-variable "azure_client_id" {}
-variable "azure_client_secret" {}
-variable "azure_subscription_id" {}
-variable "azure_tenant_id" {}
-
-variable "azure_region" {
-  default = "eastus"
-}
-
-variable "azure_az" {
-	default = "1"
-}
-
 variable "namespace" {
   default = ""
 }
 
 variable "mnc_name" {}
-
-variable "azure_resource_group" {}
 
 variable "ssh_public_key" {}
 
@@ -137,16 +122,11 @@ module "mnc" {
   aws_vpc_cidr        = var.aws_vpc_cidr
   aws_subnet_ce_cidr  = var.aws_subnet_ce_cidr
   aws_subnet_eks_cidr = var.aws_subnet_eks_cidr
-
-  azure_client_id       = var.azure_client_id
-  azure_client_secret   = var.azure_client_secret
-  azure_subscription_id = var.azure_subscription_id
-  azure_tenant_id       = var.azure_tenant_id
-  azure_region          = var.azure_region
-  azure_az              = var.azure_az
-  azure_resource_group  = var.azure_resource_group
 }
 ```
+
+---
+
 ## Requirements
 
 | Name | Version |
@@ -163,15 +143,12 @@ module "mnc" {
 | Name | Version |
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.22.0 |
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | n/a |
 | <a name="provider_null"></a> [null](#provider\_null) | >= 3.0 |
 | <a name="provider_volterra"></a> [volterra](#provider\_volterra) | >= 0.11.5 |
 
 ## Modules
 
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_vnet"></a> [vnet](#module\_vnet) | Azure/vnet/azurerm | n/a |
+No modules.
 
 ## Resources
 
@@ -187,30 +164,17 @@ module "mnc" {
 | [aws_security_group.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
 | [aws_subnet.volterra_ce](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet) | resource |
 | [aws_vpc.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc) | resource |
-| [azurerm_linux_virtual_machine.green](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_virtual_machine) | resource |
-| [azurerm_linux_virtual_machine.red](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_virtual_machine) | resource |
-| [azurerm_network_interface.green](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface) | resource |
-| [azurerm_network_interface.red](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface) | resource |
-| [azurerm_network_security_group.allow_ce](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_group) | resource |
-| [azurerm_resource_group.peer_vnet](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) | resource |
-| [azurerm_route.peer_vnet_route](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/route) | resource |
-| [azurerm_route_table.peer_vnet_route_table](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/route_table) | resource |
 | [null_resource.wait_for_aws_mns](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
-| [null_resource.wait_for_azure_mns](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
 | [volterra_aws_vpc_site.this](https://registry.terraform.io/providers/volterraedge/volterra/latest/docs/resources/aws_vpc_site) | resource |
-| [volterra_azure_vnet_site.this](https://registry.terraform.io/providers/volterraedge/volterra/latest/docs/resources/azure_vnet_site) | resource |
 | [volterra_cloud_credentials.aws](https://registry.terraform.io/providers/volterraedge/volterra/latest/docs/resources/cloud_credentials) | resource |
-| [volterra_cloud_credentials.azure](https://registry.terraform.io/providers/volterraedge/volterra/latest/docs/resources/cloud_credentials) | resource |
 | [volterra_namespace.this](https://registry.terraform.io/providers/volterraedge/volterra/latest/docs/resources/namespace) | resource |
 | [volterra_origin_pool.aws_client_ssh](https://registry.terraform.io/providers/volterraedge/volterra/latest/docs/resources/origin_pool) | resource |
 | [volterra_tcp_loadbalancer.client_ssh](https://registry.terraform.io/providers/volterraedge/volterra/latest/docs/resources/tcp_loadbalancer) | resource |
 | [volterra_tf_params_action.apply_aws_vpc](https://registry.terraform.io/providers/volterraedge/volterra/latest/docs/resources/tf_params_action) | resource |
-| [volterra_tf_params_action.apply_az_vnet](https://registry.terraform.io/providers/volterraedge/volterra/latest/docs/resources/tf_params_action) | resource |
 | [volterra_virtual_network.global_vn](https://registry.terraform.io/providers/volterraedge/volterra/latest/docs/resources/virtual_network) | resource |
 | [aws_instance.ce](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/instance) | data source |
 | [aws_instance.voltmesh](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/instance) | data source |
 | [aws_route_tables.main](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route_tables) | data source |
-| [azurerm_network_interface.sli](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/network_interface) | data source |
 | [volterra_namespace.this](https://registry.terraform.io/providers/volterraedge/volterra/latest/docs/data-sources/namespace) | data source |
 
 ## Inputs
@@ -228,17 +192,6 @@ module "mnc" {
 | <a name="input_aws_secret_key"></a> [aws\_secret\_key](#input\_aws\_secret\_key) | AWS Secret Access Key. Programmable API secret access key needed for creating the site | `string` | n/a | yes |
 | <a name="input_aws_subnet_ce_cidr"></a> [aws\_subnet\_ce\_cidr](#input\_aws\_subnet\_ce\_cidr) | Map to hold different CE cidr with key as name of subnet | `map(string)` | <pre>{<br>  "inside": "192.168.0.192/26",<br>  "outside": "192.168.0.0/25",<br>  "workload": "192.168.0.128/26"<br>}</pre> | no |
 | <a name="input_aws_vpc_cidr"></a> [aws\_vpc\_cidr](#input\_aws\_vpc\_cidr) | AWS VPC CIDR, that will be used to create the vpc while creating the site | `string` | `"192.168.0.0/22"` | no |
-| <a name="input_azure_az"></a> [azure\_az](#input\_azure\_az) | Azure Availability Zone in which the site will be created | `string` | n/a | yes |
-| <a name="input_azure_client_id"></a> [azure\_client\_id](#input\_azure\_client\_id) | Client ID for your Azure service principal | `string` | n/a | yes |
-| <a name="input_azure_client_secret"></a> [azure\_client\_secret](#input\_azure\_client\_secret) | Client Secret (alias password) for your Azure service principal | `string` | n/a | yes |
-| <a name="input_azure_client_vnet_cidr"></a> [azure\_client\_vnet\_cidr](#input\_azure\_client\_vnet\_cidr) | Azure Client Vnet CIDR, that will be used to create the vpc while creating the site | `string` | `"10.0.0.0/22"` | no |
-| <a name="input_azure_machine_type"></a> [azure\_machine\_type](#input\_azure\_machine\_type) | Azure Vnet Site machine type | `string` | `"Standard_D3_v2"` | no |
-| <a name="input_azure_region"></a> [azure\_region](#input\_azure\_region) | Azure Region where Site will be created | `string` | n/a | yes |
-| <a name="input_azure_resource_group"></a> [azure\_resource\_group](#input\_azure\_resource\_group) | Azure resource group where you want the site objects to be deployed, this has to be a new resource group | `string` | n/a | yes |
-| <a name="input_azure_subnet_ce_cidr"></a> [azure\_subnet\_ce\_cidr](#input\_azure\_subnet\_ce\_cidr) | Map to hold different CE cidr with key as name of subnet | `map(string)` | <pre>{<br>  "inside": "10.0.0.192/26",<br>  "outside": "10.0.0.0/25",<br>  "workload": "10.0.0.128/26"<br>}</pre> | no |
-| <a name="input_azure_subscription_id"></a> [azure\_subscription\_id](#input\_azure\_subscription\_id) | Subscription ID for your Azure service principal | `string` | n/a | yes |
-| <a name="input_azure_tenant_id"></a> [azure\_tenant\_id](#input\_azure\_tenant\_id) | Tenant ID for your Azure service principal | `string` | n/a | yes |
-| <a name="input_azure_vnet_cidr"></a> [azure\_vnet\_cidr](#input\_azure\_vnet\_cidr) | Azure Vnet CIDR, that will be used to create the vpc while creating the site | `string` | `"10.0.0.0/22"` | no |
 | <a name="input_client_ami_id"></a> [client\_ami\_id](#input\_client\_ami\_id) | Client VM ami-id, this will be different per AWS region. [List of ubuntu ami-id's, could be found here](https://cloud-images.ubuntu.com/locator/ec2/) | `string` | `"ami-07a0844029df33d7d"` | no |
 | <a name="input_client_disk_size"></a> [client\_disk\_size](#input\_client\_disk\_size) | Client VM disk size in GiB | `number` | `30` | no |
 | <a name="input_client_ssh_port"></a> [client\_ssh\_port](#input\_client\_ssh\_port) | TCP lb listen port for ssh access to the clients | `number` | `2220` | no |
