@@ -19,36 +19,6 @@ variable "aws_client_instance_type" {
   default     = "t2.micro"
 }
 
-variable "azure_client_id" {
-  type        = string
-  description = "Client ID for your Azure service principal"
-}
-
-variable "azure_client_secret" {
-  type        = string
-  description = "Client Secret (alias password) for your Azure service principal"
-}
-
-variable "azure_subscription_id" {
-  type        = string
-  description = "Subscription ID for your Azure service principal"
-}
-
-variable "azure_tenant_id" {
-  type        = string
-  description = "Tenant ID for your Azure service principal"
-}
-
-variable "azure_region" {
-  type        = string
-  description = "Azure Region where Site will be created"
-}
-
-variable "azure_az" {
-  type        = string
-  description = "Azure Availability Zone in which the site will be created"
-}
-
 variable "aws_region" {
   type        = string
   description = "AWS Region where Site will be created"
@@ -57,12 +27,6 @@ variable "aws_region" {
 variable "aws_az" {
   type        = string
   description = "AWS Availability Zone in which the site will be created"
-}
-
-variable "aws_vpc_cidr" {
-  type        = string
-  description = "AWS VPC CIDR, that will be used to create the vpc while creating the site"
-  default     = "192.168.0.0/22"
 }
 
 variable "site_disk_size" {
@@ -77,9 +41,20 @@ variable "aws_instance_type" {
   default     = "t3.2xlarge"
 }
 
+variable "aws_vpc_cidr" {
+  type        = string
+  description = "AWS VPC CIDR, that will be used to create the vpc while creating the site"
+  default     = "192.168.0.0/22"
+}
+
 variable "aws_subnet_ce_cidr" {
   type        = map(string)
   description = "Map to hold different CE cidr with key as name of subnet"
+  default = {
+    "outside"  = "192.168.0.0/25"
+    "inside"   = "192.168.0.192/26"
+    "workload" = "192.168.0.128/26"
+  }
 }
 
 variable "client_ami_id" {
@@ -92,32 +67,6 @@ variable "client_disk_size" {
   type        = number
   description = "Client VM disk size in GiB"
   default     = 30
-}
-
-variable "azure_vnet_cidr" {
-  type        = string
-  description = "Azure Vnet CIDR, that will be used to create the vpc while creating the site"
-}
-
-variable "azure_client_vnet_cidr" {
-  type        = string
-  description = "Azure Client Vnet CIDR, that will be used to create the vpc while creating the site"
-}
-
-variable "azure_subnet_ce_cidr" {
-  type        = map(string)
-  description = "Map to hold different CE cidr with key as name of subnet"
-}
-
-variable "azure_resource_group" {
-  type        = string
-  description = "Azure resource group where you want the site objects to be deployed, this has to be a new resource group"
-}
-
-variable "azure_machine_type" {
-  type        = string
-  description = "Azure Vnet Site machine type"
-  default     = "Standard_D3_v2"
 }
 
 variable "ssh_public_key" {
